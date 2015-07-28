@@ -5,8 +5,8 @@ The Envoy Webhooks API currently invokes a request when a Guest either signs in 
 
 ```json
 {
-  "entry" : ["{User Data}"],
-  "status" : "sign_in" || "sign_out",
+  "entry" : "{User Data}",
+  "status" : "sign_in or sign_out",
   "timestamp" : "UTC UNIX Time",
   "token" : "Random String",
   "signature" : "HASH of API KEY/TimeStamp/Token"
@@ -15,7 +15,7 @@ The Envoy Webhooks API currently invokes a request when a Guest either signs in 
 
 ####Validate Envoy Signature
 
-To ensure the contents being receive originated from Envoy you need the Envoy API Key stored in a Variable, config file, et al (my example uses a config.js file)
+To ensure the contents being received originated from Envoy you need the Envoy API Key stored in a Variable, config file, et al (my example uses a config.js file)
 
 ```javascript
 module.exports = {
@@ -41,4 +41,20 @@ var envoySignage = {
 var dataIsValid = verifier.verifySig(envoySignage);
 if (dataIsValid) console.log('The Message Came From Envoy');
 else console.log('That Message did not originate from Envoy');
+```
+
+#####Verify Algorithm
+
+If you don't have a mechanism in place to verify data received from Envoy you can use your "API Key" to create a "mock" Signature Definition Object (timestamp, token, sig)
+
+```javascript
+var envoyValidator = require('envoy_sigvalidator');
+var apiKey = 'your api key';
+var verifier = envoyValidator(apiKey);
+verifier.createSigDef(function(err, sig) {
+  var mockEnvoySignage = sig;
+  var dataIsValid = verifier.verifySig(mockEnvoySignage);
+  if (dataIsValid) console.log('The Message Came From Envoy');
+  else console.log('That Message did not originate from Envoy');
+});
 ```
