@@ -1,4 +1,4 @@
-#Envoy.co Webhooks Signature Verification
+# Envoy.co Webhooks Signature Verification
 Description: This module verifies that the data being received by your "http listener" actually originated from Envoy.
 
 The Envoy Webhooks API currently invokes a request when a Guest either signs in or signs out. Below is a representation of this object.
@@ -13,7 +13,7 @@ The Envoy Webhooks API currently invokes a request when a Guest either signs in 
 }
 ```
 
-####Validate Envoy Signature
+#### Validate Envoy Signature
 
 To ensure the contents being received originated from Envoy you need the Envoy API Key stored in a Variable, config file, et al (my example uses a config.js file)
 
@@ -23,7 +23,7 @@ module.exports = {
 };
 ```
 
-#####Useage of this API
+##### Useage of this API
 
 ```javascript
 var envoyValidator = require('envoy_sigvalidator');
@@ -43,7 +43,7 @@ if (dataIsValid) console.log('The Message Came From Envoy');
 else console.log('That Message did not originate from Envoy');
 ```
 
-#####Verify Algorithm
+##### Verify Algorithm
 
 If you don't have a mechanism in place to verify data received from Envoy you can use your "API Key" to create a "mock" Signature Definition Object (timestamp, token, sig)
 
