@@ -1,0 +1,22 @@
+{
+  "name": "envoy_sigvalidator",
+  "version": "0.1.0",
+  "description": "A Node Module that Validates the Signature of the Envoy Webhooks API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:drkchiloll/envoy_sigvalidator.git"
+  },
+  "author": "Sam Womack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/drkchiloll/envoy_sigvalidator/issues"
+  },
+  "homepage": "https://github.com/drkchiloll/envoy_sigvalidator",
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
